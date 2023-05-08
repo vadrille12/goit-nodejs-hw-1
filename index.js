@@ -4,8 +4,8 @@ const contactsService = require("./contacts");
 
 const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
-    case "getAll":
-      const allContacts = await contactsService.getAllContacts();
+    case "list":
+      const allContacts = await contactsService.getContacts();
       return console.table(allContacts);
 
     case "getById":
@@ -21,11 +21,11 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       return console.table(newContact);
 
     case "remove":
-      const deletedContact = await contactsService.removeContact(id);
+      const deletedContact = await contactsService.deleteContact(id);
       return console.table(deletedContact);
 
     default:
-      console.warn("\x1B[31m Unknown action type!");
+      console.warn("Unknown action type!");
   }
 };
 
